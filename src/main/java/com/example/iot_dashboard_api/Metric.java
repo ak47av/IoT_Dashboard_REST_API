@@ -6,46 +6,25 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "metric")
-public class Metric {
+public class Metric extends  AbstractEntity{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private String name;
     private double value;
     private LocalDateTime timestamp;
-
-    // Constructors, Getters, and Setters
 
     public Metric() {
         this.timestamp = LocalDateTime.now();
     }
 
-    public Metric(String name, double value) {
-        this.name = name;
+    public Metric(String name, double value, String location, String mqttTopic, String mqttHostname) {
+        this.setName(name);
         this.value = value;
         this.timestamp = LocalDateTime.now();
+        this.setLocation(location);
+        this.setMqttTopic(mqttTopic);
+        this.setMqttHostname(mqttHostname);
     }
 
     // Getters and Setters
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public double getValue() {
         return value;
     }

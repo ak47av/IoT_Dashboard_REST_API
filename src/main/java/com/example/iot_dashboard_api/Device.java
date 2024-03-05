@@ -1,45 +1,25 @@
 package com.example.iot_dashboard_api;
 
-
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "device")
-public class Device {
+public class Device extends AbstractEntity{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String name;
     private boolean isOn;
 
     // Constructors, Getters, and Setters
+    public Device() {}
 
-    public Device() {
-    }
-
-    public Device(String name, boolean isOn) {
-        this.name = name;
+    public Device(String name, boolean isOn, String location, String mqttTopic, String mqttHostname) {
+        this.setName(name);
         this.isOn = isOn;
+        this.setLocation(location);
+        this.setMqttTopic(mqttTopic);
+        this.setMqttHostname(mqttHostname);
     }
 
     // Getters and Setters
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public boolean isOn() {
         return isOn;
@@ -48,4 +28,5 @@ public class Device {
     public void setOn(boolean on) {
         isOn = on;
     }
+
 }
